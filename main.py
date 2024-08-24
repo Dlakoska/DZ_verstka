@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+from urllib.parse import urlparse, parse_qs
 hostName = 'localhost'
 serverPort = 8080
 
@@ -13,6 +13,8 @@ class MyServer(BaseHTTPRequestHandler):
         return context
 
     def do_GET(self):
+        query = parse_qs(urlparse(self.path).query)
+        print(query)
         page_content = self.__get_html_content()
         self.send_response(200)
         self.send_header('Content-type', "text/html")
