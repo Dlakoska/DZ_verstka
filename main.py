@@ -6,7 +6,7 @@ serverPort = 8080
 
 
 class MyServer(BaseHTTPRequestHandler):
-    filename = "DZ.html"
+    filename = "dz.html"
 
     def __get_html_content(self):
         with open(self.filename, 'r', encoding="utf-8") as f:
