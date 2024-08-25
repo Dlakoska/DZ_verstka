@@ -8,7 +8,7 @@ serverPort = 8080
 class MyServer(BaseHTTPRequestHandler):
     filename = "dz.html"
 
-    def __get_html_content(self):
+    def get_html_content(self):
         with open(self.filename, 'r', encoding="utf-8") as f:
             context = f.read()
         return context
@@ -16,7 +16,7 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         query = parse_qs(urlparse(self.path).query)
         print(query)
-        page_content = self.__get_html_content()
+        page_content = self.get_html_content()
         self.send_response(200)
         self.send_header('Content-type', "text/html")
         self.end_headers()
